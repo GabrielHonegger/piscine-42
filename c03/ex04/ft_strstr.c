@@ -6,44 +6,49 @@
 /*   By: glopes-h <glopes-h@student.42roma.i>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 14:26:12 by glopes-h          #+#    #+#             */
-/*   Updated: 2023/10/06 20:34:17 by glopes-h         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:55:30 by glopes-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	len_to_find(char *to_find)
+char	*return_size_find(char *to_find, char *str)
 {
-	int		len;
-
-	len = 0;
-	while (to_find[len] != 0)
-		len++;
-	return (len);
+	while (*to_find != '\0')
+	{
+		str--;
+		to_find++;
+	}
+	str++;
+	return (str);
 }
 
 char	*ft_strstr(char *str, char *to_find)
 {
-	int		i;
-	int		j;
-	int		len_find;
+	char	*f;
 
-	len_find = len_to_find(to_find);
-	i = 0;
-	if (len_find == 0)
+	f = to_find;
+	if (*to_find == '\0')
 		return (str);
-	while (str[i] != 0)
+	while (*str)
 	{
-		j = 0;
-		if (str[i] == to_find[j])
+		if (*str == *to_find)
 		{
-			while (str[i] == to_find[j] && to_find[j] != 0)
+			to_find++;
+			if (*to_find == '\0')
 			{
-				j++;
-				i++;
+				to_find = f;
+				return (return_size_find(to_find, str));
 			}
-			if (to_find[j] == 0)
-				return (&str[i - len_find]);
 		}
-		i++;
+		else
+			to_find = f;
+		str++;
 	}
 	return (0);
 }
+/*
+#include <stdio.h>
+
+int	main(void)
+{
+	printf("%s\n", ft_strstr("Hello, World!", "llo"));
+}*/
