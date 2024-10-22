@@ -12,4 +12,4 @@ Para compilar e executar os projetos, utilize o seguinte comando no terminal:
 
 ```bash
 gcc nome_do_arquivo.c -o nome_do_programa
-./nome_do_programa ```w
+./nome_do_programa
